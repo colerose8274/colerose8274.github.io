@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cole Rose — Data & Analytics Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2341;
+    --navy-mid: #1a3a5c;
+    --navy-light: #234875;
+    --gold: #c49a3c;
+    --gold-light: #e8c06a;
+    --cream: #f8f5ef;
+    --white: #ffffff;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --text: #1a1a2e;
+    --border: #e2d9c8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* Hero */
+  .hero {
+    background: var(--navy);
+    color: var(--white);
+    padding: 80px 40px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,154,60,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 58px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    color: var(--white);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(196,154,60,0.4);
+    color: var(--gold-light);
+    background: rgba(196,154,60,0.08);
+    letter-spacing: 0.3px;
+  }
+
+  /* Main content */
+  .main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 40px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Project cards */
+  .projects {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-bottom: 64px;
+  }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .project-card:nth-child(2) { animation-delay: 0.1s; }
+  .project-card:nth-child(3) { animation-delay: 0.2s; }
+  .project-card:nth-child(4) { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .project-card:hover {
+    box-shadow: 0 12px 40px rgba(15,35,65,0.12);
+    transform: translateY(-2px);
+  }
+
+  .card-header {
+    padding: 28px 32px 24px;
+    border-bottom: 1px solid var(--gray-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .card-header-left { flex: 1; }
+
+  .card-type {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .card-org {
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 400;
+  }
+
+  .card-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .badge-green { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+  .badge-blue { background: #eff6ff; color: #1e40af; border: 1px solid #bfdbfe; }
+  .badge-amber { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+  .badge-purple { background: #f5f3ff; color: #5b21b6; border: 1px solid #ddd6fe; }
+
+  .card-body {
+    padding: 24px 32px;
+  }
+
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 20px;
+  }
+
+  /* Mock dashboard viz */
+  .mock-viz {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mock-viz-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 14px;
+  }
+
+  /* Bar chart mock */
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 80px;
+  }
+
+  .bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    position: relative;
+    transition: opacity 0.2s;
+  }
+  .bar:hover { opacity: 0.8; }
+
+  .bar-navy { background: var(--navy-mid); }
+  .bar-gold { background: var(--gold); }
+  .bar-light { background: #93c5fd; }
+
+  /* KPI row mock */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .kpi-box {
+    background: var(--white);
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .kpi-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+  }
+
+  .kpi-label {
+    font-size: 10px;
+    color: var(--gray);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  /* Table mock */
+  .mock-table { width: 100%; border-collapse: collapse; }
+  .mock-table th {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--gray);
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .mock-table td {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--gray-light);
+    color: #374151;
+  }
+  .mock-table tr:last-child td { border-bottom: none; }
+
+  .status-pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+  .pill-green { background: #dcfce7; color: #166534; }
+  .pill-yellow { background: #fef9c3; color: #854d0e; }
+  .pill-red { background: #fee2e2; color: #991b1b; }
+  .pill-blue { background: #dbeafe; color: #1e40af; }
+
+  /* Timeline mock */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tl-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .tl-label { font-size: 11px; color: var(--gray); width: 110px; flex-shrink: 0; }
+  .tl-bar-wrap { flex: 1; background: var(--border); border-radius: 4px; height: 14px; overflow: hidden; }
+  .tl-bar { height: 100%; border-radius: 4px; }
+
+  /* Tools used */
+  .tools-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .tool-chip {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.2px;
+  }
+
+  /* Impact stat */
+  .impact-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .impact-stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--navy-mid);
+    font-weight: 500;
+  }
+
+  .impact-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* About strip */
+  .about-strip {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 40px;
+    color: var(--white);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .about-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .about-strip p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+
+  .contact-block { flex-shrink: 0; }
+
+  .contact-link {
+    display: block;
+    font-size: 13px;
+    color: var(--gold-light);
+    text-decoration: none;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .contact-link:hover { color: var(--white); }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 24px 40px; }
+    .main { padding: 40px 24px; }
+    .card-header { flex-direction: column; }
+    .card-body { padding: 20px 24px; }
+    .card-header { padding: 20px 24px 16px; }
+    .kpi-row { grid-template-columns: repeat(3, 1fr); }
+    .about-strip { flex-direction: column; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Data & Analytics Portfolio</div>
+    <h1>Cole Rose</h1>
+    <p class="hero-sub">IT Data Analyst supporting government operations through data-driven reporting, program delivery, and analytics infrastructure at the New Mexico Administrative Office of District Attorneys.</p>
+    <div class="hero-tags">
+      <span class="tag">Power BI</span>
+      <span class="tag">SQL / T-SQL</span>
+      <span class="tag">Federal & State Government</span>
+      <span class="tag">ETL & Data Pipelines</span>
+      <span class="tag">SharePoint</span>
+      <span class="tag">SSRS</span>
+      <span class="tag">AZ-900 Certified</span>
+      <span class="tag">PL-300 Certified</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="section-label">Selected Work</div>
+  <div class="section-title">Project Highlights</div>
+
+  <div class="projects">
+
+    <!-- PROJECT 1: Active User Accounts -->
+    <div class="project-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-type">Access Management & Reporting</div>
+          <div class="card-title">Active User Account Reconciliation Report</div>
+          <div class="card-org">AODA — IT Operations</div>
+        </div>
+        <div class="card-badge badge-green">80% Discrepancy Reduction</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Identified a growing gap between active system accounts and current HR records across enterprise platforms. Built a reconciliation report using Excel — leveraging VLOOKUPs, pivot tables, and conditional logic — to cross-reference user access data against personnel rosters, flagging orphaned accounts, role mismatches, and provisioning errors for remediation. Delivered to IT leadership on a recurring basis, enabling ongoing access control compliance.</p>
+
+        <div class="mock-viz">
+          <div class="mock-viz-label">User Account Status Overview</div>
+          <div class="kpi-row">
+            <div class="kpi-box">
+              <span class="kpi-num">847</span>
+              <div class="kpi-label">Total Accounts</div>
+            </div>
+            <div class="kpi-box">
+              <span class="kpi-num" style="color:#065f46">819</span>
+              <div class="kpi-label">Reconciled</div>
+            </div>
+            <div class="kpi-box">
+              <span class="kpi-num" style="color:#991b1b">28</span>
+              <div class="kpi-label">Flagged</div>
+            </div>
+          </div>
+          <br>
+          <table class="mock-table">
+            <thead>
+              <tr>
+                <th>Department</th>
+                <th>Accounts</th>
+                <th>Matched</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>District Attorneys</td><td>312</td><td>312</td><td><span class="status-pill pill-green">Reconciled</span></td></tr>
+              <tr><td>IT Operations</td><td>184</td><td>181</td><td><span class="status-pill pill-yellow">3 Flagged</span></td></tr>
+              <tr><td>Admin & Support</td><td>221</td><td>196</td><td><span class="status-pill pill-red">25 Flagged</span></td></tr>
+              <tr><td>Investigators</td><td>130</td><td>130</td><td><span class="status-pill pill-green">Reconciled</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tools-row">
+          <span class="tool-chip">Excel</span>
+          <span class="tool-chip">VLOOKUP / XLOOKUP</span>
+          <span class="tool-chip">Pivot Tables</span>
+          <span class="tool-chip">SharePoint</span>
+          <span class="tool-chip">SQL Server</span>
+        </div>
+        <div class="impact-row">
+          <div class="impact-stat"><div class="impact-dot"></div>Reduced account discrepancy rate by ~80%</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Delivered to IT leadership on recurring cycle</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Enabled ongoing access control compliance</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: Victim Notification -->
+    <div class="project-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-type">Operational Dashboard</div>
+          <div class="card-title">Statewide Victim Notification Alert Tracker</div>
+          <div class="card-org">AODA — Case Management Systems</div>
+        </div>
+        <div class="card-badge badge-blue">Power BI</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Developed a Power BI dashboard to track the delivery and status of victim notification alerts across all New Mexico district attorney offices. Integrated data from the case management system (CMS) to surface real-time alert volumes, delivery failures, and pending notifications by county and case type. Enabled case managers and DA leadership to monitor compliance with notification requirements and proactively address gaps before they became audit findings.</p>
+
+        <div class="mock-viz">
+          <div class="mock-viz-label">Alert Status by County — Current Month</div>
+          <div style="display:flex; gap:6px; align-items:flex-end; height:90px; margin-bottom:8px;">
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--navy-mid); border-radius:3px 3px 0 0; height:80px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Bernalillo</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--navy-mid); border-radius:3px 3px 0 0; height:55px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Doña Ana</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--navy-mid); border-radius:3px 3px 0 0; height:42px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Santa Fe</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--gold); border-radius:3px 3px 0 0; height:18px;"></div>
+              <div style="font-size:9px; color:var(--gray);">San Juan</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--navy-mid); border-radius:3px 3px 0 0; height:30px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Chaves</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--gold); border-radius:3px 3px 0 0; height:12px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Lea</div>
+            </div>
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center; gap:4px;">
+              <div style="width:100%; background:var(--navy-mid); border-radius:3px 3px 0 0; height:22px;"></div>
+              <div style="font-size:9px; color:var(--gray);">Eddy</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:16px; margin-top:4px;">
+            <div style="display:flex; align-items:center; gap:6px; font-size:10px; color:var(--gray);">
+              <div style="width:10px;height:10px;border-radius:2px;background:var(--navy-mid);"></div> Delivered
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:10px; color:var(--gray);">
+              <div style="width:10px;height:10px;border-radius:2px;background:var(--gold);"></div> Pending / Failed
+            </div>
+          </div>
+        </div>
+
+        <div class="tools-row">
+          <span class="tool-chip">Power BI</span>
+          <span class="tool-chip">DAX</span>
+          <span class="tool-chip">SQL Server</span>
+          <span class="tool-chip">CMS Integration</span>
+          <span class="tool-chip">Azure</span>
+        </div>
+        <div class="impact-row">
+          <div class="impact-stat"><div class="impact-dot"></div>Real-time visibility into statewide notification compliance</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Surfaced delivery failures before audit review</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Vendor Process -->
+    <div class="project-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-type">Program Delivery & Vendor Management</div>
+          <div class="card-title">CMS-to-ePros Vendor Migration Delivery Tracker</div>
+          <div class="card-org">AODA — IT Program Office</div>
+        </div>
+        <div class="card-badge badge-amber">Multi-Workstream</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Supported a complex, multi-phase data migration from a legacy Case Management System (CMS) to the eProsecutor (ePros) platform delivered by an external vendor. Built and maintained delivery tracking infrastructure including milestone logs, action item trackers, defect registers, and UAT documentation across SharePoint and Jira. Coordinated recurring vendor meetings, captured decisions and action items, and produced status summaries for IT leadership — keeping a high-stakes program organized across technical and operational workstreams.</p>
+
+        <div class="mock-viz">
+          <div class="mock-viz-label">Migration Phase Progress</div>
+          <div class="timeline">
+            <div class="tl-row">
+              <div class="tl-label">Data Mapping</div>
+              <div class="tl-bar-wrap"><div class="tl-bar" style="width:100%;background:var(--navy-mid);"></div></div>
+              <div style="font-size:11px;color:#065f46;font-weight:600;width:36px;text-align:right;">✓</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-label">Schema Conversion</div>
+              <div class="tl-bar-wrap"><div class="tl-bar" style="width:100%;background:var(--navy-mid);"></div></div>
+              <div style="font-size:11px;color:#065f46;font-weight:600;width:36px;text-align:right;">✓</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-label">UAT / Validation</div>
+              <div class="tl-bar-wrap"><div class="tl-bar" style="width:78%;background:var(--gold);"></div></div>
+              <div style="font-size:11px;color:#92400e;font-weight:600;width:36px;text-align:right;">78%</div>
+            </div>
+            <div class="tl-row">
+              <div class="tl-label">Go-Live Prep</div>
+              <div class="tl-bar-wrap"><div class="tl-bar" style="width:30%;background:#93c5fd;"></div></div>
+              <div style="font-size:11px;color:#1e40af;font-weight:600;width:36px;text-align:right;">30%</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tools-row">
+          <span class="tool-chip">Jira</span>
+          <span class="tool-chip">SharePoint</span>
+          <span class="tool-chip">Excel</span>
+          <span class="tool-chip">SQL Server</span>
+          <span class="tool-chip">SSRS</span>
+          <span class="tool-chip">Power BI</span>
+        </div>
+        <div class="impact-row">
+          <div class="impact-stat"><div class="impact-dot"></div>Maintained delivery visibility across 4+ workstreams</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Coordinated vendor accountability through structured tracking</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Supported UAT across statewide DA offices</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: Operational Reporting -->
+    <div class="project-card">
+      <div class="card-header">
+        <div class="card-header-left">
+          <div class="card-type">Business Intelligence</div>
+          <div class="card-title">Case Processing & Hearing Analytics Dashboard</div>
+          <div class="card-org">AODA — IT Data Analytics</div>
+        </div>
+        <div class="card-badge badge-purple">SSRS + Power BI</div>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">Designed and built an operational reporting suite covering case intake, hearing schedules, disposition tracking, and KPI performance across district attorney offices statewide. Combined SSRS reports for structured compliance output with a Power BI dashboard for executive-level trend analysis. Built analytical matching logic to accurately reconcile case and event records across multi-source justice datasets, improving downstream reporting accuracy and processing efficiency significantly.</p>
+
+        <div class="mock-viz">
+          <div class="mock-viz-label">Case Processing KPIs — Statewide</div>
+          <div class="kpi-row" style="grid-template-columns: repeat(3,1fr); margin-bottom:16px;">
+            <div class="kpi-box">
+              <span class="kpi-num">2,341</span>
+              <div class="kpi-label">Cases This Month</div>
+            </div>
+            <div class="kpi-box">
+              <span class="kpi-num" style="color:#1e40af;">94%</span>
+              <div class="kpi-label">On-Time Hearings</div>
+            </div>
+            <div class="kpi-box">
+              <span class="kpi-num" style="color:#065f46;">85%</span>
+              <div class="kpi-label">Processing Efficiency</div>
+            </div>
+          </div>
+          <table class="mock-table">
+            <thead>
+              <tr><th>Case Type</th><th>Intake</th><th>Disposed</th><th>Avg Days</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Felony</td><td>412</td><td>389</td><td>47</td><td><span class="status-pill pill-green">On Track</span></td></tr>
+              <tr><td>Misdemeanor</td><td>883</td><td>901</td><td>18</td><td><span class="status-pill pill-green">On Track</span></td></tr>
+              <tr><td>DV / Protective</td><td>276</td><td>241</td><td>62</td><td><span class="status-pill pill-yellow">Watch</span></td></tr>
+              <tr><td>Juvenile</td><td>154</td><td>148</td><td>33</td><td><span class="status-pill pill-blue">Review</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tools-row">
+          <span class="tool-chip">Power BI</span>
+          <span class="tool-chip">SSRS</span>
+          <span class="tool-chip">SQL Server</span>
+          <span class="tool-chip">DAX</span>
+          <span class="tool-chip">T-SQL</span>
+          <span class="tool-chip">Azure</span>
+        </div>
+        <div class="impact-row">
+          <div class="impact-stat"><div class="impact-dot"></div>85% improvement in processing efficiency</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Statewide visibility across all DA offices</div>
+          <div class="impact-stat"><div class="impact-dot"></div>Reduced manual reporting burden for leadership</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <div class="about-strip">
+    <div style="flex:1;">
+      <h2>Cole Rose</h2>
+      <p>IT Data Analyst with the New Mexico Administrative Office of District Attorneys. Specializing in government data reporting, Power BI analytics, program delivery support, and enterprise data management in regulated public sector environments.</p>
+    </div>
+    <div class="contact-block">
+      <a class="contact-link" href="mailto:colerose8274@gmail.com">colerose8274@gmail.com</a>
+      <a class="contact-link" href="tel:5054001506">505-400-1506</a>
+      <a class="contact-link" href="https://www.linkedin.com/in/cole-rose-332972201/" target="_blank">LinkedIn Profile</a>
+      <div style="margin-top:12px; font-size:11px; color:rgba(255,255,255,0.35); letter-spacing:1px; text-transform:uppercase;">Albuquerque, NM · Remote</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
